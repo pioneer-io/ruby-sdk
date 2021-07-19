@@ -18,6 +18,21 @@ class Config
 		return self
 	end
 
+	def with_wait_for_data(time_out = 1, polling_attempts = 5)
+		attempts = 0
+
+		until @client.has_data() do
+			attempts += 1
+			if attempts > polling_attempts
+				puts "Cannot connect to Scout, connection timed out"
+				break
+			end
+
+			sleep(time_out)
+		end
+		return self
+	end
+
 	def with_context(user_key)
 		user_key = user_key
 		context_obj = {
@@ -35,4 +50,4 @@ class Config
 end
 
 test = Config.new('fdhfakjhdsak', 'fdsfs')
-puts test.connect().with_context('fdsfsd')
+puts test.connect().with_wait_for_data()

@@ -5,6 +5,8 @@ require_relative 'lib/handle_undefined_feature'
 
 # class for event source client instance
 class Event_Source_Client 
+	attr_reader :has_data
+	
 	def initialize(config)
 		@config = config
 		@features = {}
