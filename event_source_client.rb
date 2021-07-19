@@ -1,6 +1,7 @@
 require 'ld-eventsource'
 require 'json'
 require_relative 'feature_state'
+require_relative 'lib/handle_undefined_feature'
 
 # class for event source client instance
 class EventSourceClient 
@@ -64,9 +65,7 @@ class EventSourceClient
 	def get_feature(key, default_value) 
 		feature_state = get_feature_state(key)
 		if !feature_state
-			# this feature is not defined, we need to create/import it
-			# return handle_undefined_feature(key, default_value)
-			puts "handle undefined feature method call"
+			handle_undefined_feature(key, default_value)
 			return
 		end
 
@@ -81,7 +80,5 @@ class EventSourceClient
 end
 
 fake_config = { sdk_key: "asdfasdf" }
-p fake_config[:sdk_key]
 test_client = EventSourceClient.new(fake_config)
-# p test_client
 puts test_client.get_feature("nokey", 'blah')
