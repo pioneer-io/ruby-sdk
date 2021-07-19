@@ -6,7 +6,7 @@ require_relative 'lib/handle_undefined_feature'
 # class for event source client instance
 class Event_Source_Client 
 	attr_reader :has_data
-	
+
 	def initialize(config)
 		@config = config
 		@features = {}
@@ -83,7 +83,3 @@ class Event_Source_Client
 		return @features[:key]
 	end
 end
-
-fake_config = { sdk_key: "asdfasdf" }
-test_client = Event_Source_Client.new(fake_config)
-puts test_client.get_feature("nokey", 'blah')

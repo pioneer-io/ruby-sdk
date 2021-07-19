@@ -2,7 +2,7 @@ require_relative 'event_source_client'
 require_relative 'context'
 require_relative 'client_with_context'
 
-class Config 
+class Config
 	def initialize(server_address, sdk_key)
 		@server_address = server_address
 		@sdk_key = sdk_key
@@ -48,6 +48,3 @@ class Config
 		return @server_address
 	end
 end
-
-test = Config.new('fdhfakjhdsak', 'fdsfs')
-puts test.connect().with_wait_for_data()
