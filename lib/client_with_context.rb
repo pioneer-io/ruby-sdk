@@ -1,4 +1,4 @@
-require_relative 'lib/handle_undefined_feature.rb'
+require_relative 'helper_methods/handle_undefined_feature.rb'
 
 class Client_With_Context
 	def initialize(context_obj)

@@ -1,7 +1,7 @@
 require 'ld-eventsource'
 require 'json'
 require_relative 'feature_state'
-require_relative 'lib/handle_undefined_feature'
+require_relative 'helper_methods/handle_undefined_feature'
 
 # class for event source client instance
 class Event_Source_Client 
