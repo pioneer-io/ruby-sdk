@@ -1,4 +1,4 @@
-require 'strategy'
+require_relative 'strategy'
 
 class FeatureState
 	def initialize(feature_state_object)

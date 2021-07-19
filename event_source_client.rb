@@ -1,5 +1,6 @@
 require 'ld-eventsource'
 require 'json'
+require_relative 'feature_state'
 
 # class for event source client instance
 class EventSourceClient 
@@ -36,14 +37,14 @@ class EventSourceClient
 		end
 	end
 
-	handle_errors() do 
+	def handle_errors()
 		@api_client.on_error do |error|
 			puts "Event Source Failed: ", error
 		end
 	end
 
 
-	handle_all_features(all_features) do 
+	def handle_all_features(all_features)
 		all_features = JSON.parse(all_features)
 		feature_states = {}
 
@@ -53,7 +54,6 @@ class EventSourceClient
 				value: feature[:is_active],
 				strategy: {percentage: feature[:rollout]}
 			}
-			# need to create and import class
 			feature_states[feature[:title]] = FeatureState.new(modified_feature_state_params)
 		end
 
@@ -67,6 +67,7 @@ class EventSourceClient
 			# this feature is not defined, we need to create/import it
 			# return handle_undefined_feature(key, default_value)
 			puts "handle undefined feature method call"
+			return
 		end
 
 		value = feature_state[:value]
@@ -82,4 +83,5 @@ end
 fake_config = { sdk_key: "asdfasdf" }
 p fake_config[:sdk_key]
 test_client = EventSourceClient.new(fake_config)
-puts test_client
+# p test_client
+puts test_client.get_feature("nokey", 'blah')
