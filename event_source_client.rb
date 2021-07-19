@@ -13,7 +13,7 @@ class EventSourceClient
       headers: { Authorization: @config[:sdk_key]}
     }
 
-	sse_client = SSE::Client.new("http://hostname/resource/path", headers: options[:headers])
+	sse_client = SSE::Client.new("localhost:3030/features", headers: options[:headers])
 
 	@api_client = sse_client
 	end
