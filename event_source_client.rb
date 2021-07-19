@@ -4,7 +4,7 @@ require_relative 'feature_state'
 require_relative 'lib/handle_undefined_feature'
 
 # class for event source client instance
-class EventSourceClient 
+class Event_Source_Client 
 	def initialize(config)
 		@config = config
 		@features = {}
@@ -19,17 +19,20 @@ class EventSourceClient
 	end
 
 	def start
-		handleEvents()
-		handleErrors()
+		handle_events()
+		handle_errors()
 	end
 
-	def handleEvents
+	def handle_events
+		event_type = nil
+
 		@api_client.on_event do |event| 
 			data = JSON.parse(event[:data]) 
 			event_type = data[:type]
 			payload = data[:data]
 		end
 
+		puts event_type
 		case event_type
 		when "ALL_FEATURES" 
 			handle_all_features(payload)
@@ -80,5 +83,5 @@ class EventSourceClient
 end
 
 fake_config = { sdk_key: "asdfasdf" }
-test_client = EventSourceClient.new(fake_config)
+test_client = Event_Source_Client.new(fake_config)
 puts test_client.get_feature("nokey", 'blah')
