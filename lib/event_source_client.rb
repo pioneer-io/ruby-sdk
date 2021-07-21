@@ -15,7 +15,8 @@ class Event_Source_Client
       headers: { Authorization: @config[:sdk_key]}
     }
 
-	sse_client = SSE::Client.new("localhost:3030/features", headers: options[:headers])
+	# this needs to make use of the constant based uri, not hardcoded
+	sse_client = SSE::Client.new("http://localhost:3030/features", headers: options[:headers])
 
 	@api_client = sse_client
 	end
@@ -26,20 +27,13 @@ class Event_Source_Client
 	end
 
 	def handle_events
-		event_type = nil
-
 		@api_client.on_event do |event| 
 			data = JSON.parse(event[:data]) 
-			event_type = data[:type]
-			payload = data[:data]
-		end
-
-		puts event_type
-		case event_type
-		when "ALL_FEATURES" 
-			handle_all_features(payload)
-		when "CREATE_CONNECTION"
-			return
+			event_type = data['eventType']
+			if event_type == "ALL_FEATURES"
+				payload = data['payload']
+				handle_all_features(payload)
+			end
 		end
 	end
 
@@ -64,6 +58,7 @@ class Event_Source_Client
 		end
 
 		@features = feature_states
+		puts 'current feature states:', @features
 		@has_data = true
 	end
 
