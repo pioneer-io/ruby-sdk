@@ -53,3 +53,6 @@ class PioneerRubySdk
 		@client.get_feature(key, default_value)
 	end
 end
+
+sdk_client = PioneerRubySdk.new('http://localhost:3030/feature', 'a14dcd5b-fcdc-49eb-9cee-2d84dac21d9c')
+sdk_client.connect.with_wait_for_data
