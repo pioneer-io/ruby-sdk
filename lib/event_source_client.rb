@@ -49,12 +49,13 @@ class Event_Source_Client
 		feature_states = {}
 
 		all_features.each do |feature|
+		puts 'feature :', feature
 			modified_feature_state_params = {
-				title: feature[:title],
-				value: feature[:is_active],
-				strategy: {percentage: feature[:rollout]}
+				title: feature['title'],
+				value: feature['is_active'],
+				strategy: {percentage: feature['rollout']}
 			}
-			feature_states[feature[:title]] = FeatureState.new(modified_feature_state_params)
+			feature_states[feature['title']] = FeatureState.new(modified_feature_state_params)
 		end
 
 		@features = feature_states
