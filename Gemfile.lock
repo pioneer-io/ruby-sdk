@@ -20,14 +20,23 @@ GEM
     http-form_data (2.3.0)
     http-parser (1.2.3)
       ffi-compiler (>= 1.0, < 2.0)
+    io-wait (0.1.0)
     ld-eventsource (2.0.0)
       concurrent-ruby (~> 1.0)
       http (~> 4.4.1)
+    net-http (0.1.1)
+      net-protocol
+      uri
+    net-protocol (0.1.1)
+      io-wait
+      timeout
     public_suffix (4.0.6)
     rake (13.0.6)
+    timeout (0.1.1)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
+    uri (0.10.1)
 
 PLATFORMS
   x86_64-darwin-19
@@ -35,6 +44,7 @@ PLATFORMS
 
 DEPENDENCIES
   ld-eventsource
+  net-http
 
 BUNDLED WITH
    2.2.24
