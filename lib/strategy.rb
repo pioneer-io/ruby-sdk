@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
+# handles the calculation of rollout for a given context
 class Strategy
   def initialize(percentage)
 		@percentage = percentage
 		@modulus = 100
 	end
-
 
 	def calculate(context)
 		key = context.get_key()
@@ -13,6 +15,6 @@ class Strategy
 
 	def get_hash_based_percentage(string) 
 		sum = string.bytes.sum()
-		return  ((sum % @modulus) + 1)
+		return ((sum % @modulus) + 1)
 	end
 end
