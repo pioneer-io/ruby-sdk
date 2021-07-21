@@ -1,7 +1,7 @@
 require 'ld-eventsource'
 require 'json'
 require_relative 'feature_state'
-require_relative 'helper_methods/handle_undefined_feature'
+require_relative 'mod/handle_undefined_feature'
 
 # class for event source client instance
 class Event_Source_Client 
@@ -49,7 +49,6 @@ class Event_Source_Client
 		feature_states = {}
 
 		all_features.each do |feature|
-		puts 'feature :', feature
 			modified_feature_state_params = {
 				title: feature['title'],
 				value: feature['is_active'],
@@ -59,23 +58,21 @@ class Event_Source_Client
 		end
 
 		@features = feature_states
-		puts 'current feature states:', @features
 		@has_data = true
 	end
 
 	def get_feature(key, default_value) 
 		feature_state = get_feature_state(key)
-		if !feature_state
-			handle_undefined_feature(key, default_value)
+		if feature_state.nil?
+			HandleUndefinedFeature.handle(key, default_value)
 			return
 		end
 
-		value = feature_state[:value]
-		return value
+		feature_state.value
 	end
 
 
 	def get_feature_state(key) 
-		return @features[:key]
+		return @features[key]
 	end
 end
