@@ -52,3 +52,20 @@ class Pioneer_Ruby_Sdk
 		@client.get_feature(key, default_value)
 	end
 end
+
+sdk_client = Pioneer_Ruby_Sdk.new('http://localhost:3030/features', 'a14dcd5b-fcdc-49eb-9cee-2d84dac21d9c')
+
+sdk_connection = sdk_client.connect.with_wait_for_data
+
+puts sdk_connection
+puts 'What is the current state of `test this flag`?'
+puts sdk_connection.get_feature('test this flag', true) # should log `false`
+
+sdk_with_user = sdk_connection.with_context('99')
+if sdk_with_user.get_feature('test this flag', true)
+	puts 'Calling some microservice...'
+	# call to new microservice goes here
+else
+	puts 'Calling the monolith service...'
+	# monolith defined service call goes here
+end

@@ -13,6 +13,7 @@ class Strategy
 
 	def get_hash_based_percentage(string) 
 		sum = string.bytes.sum()
-		return  ((sum % @modulus) + 1) / @modulus
+		puts "sum of bytes: ", Float((sum % @modulus) + 1)
+		return  ((sum % @modulus) + 1)
 	end
 end
