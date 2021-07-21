@@ -2,7 +2,8 @@ require_relative 'event_source_client'
 require_relative 'context'
 require_relative 'client_with_context'
 
-class Pioneer_Ruby_Sdk
+# wrapper for event source client
+class PioneerRubySdk
 	def initialize(server_address, sdk_key)
 		@server_address = server_address
 		@sdk_key = sdk_key
