@@ -19,7 +19,7 @@ class PioneerRubySdk
 		self
 	end
 
-	def with_wait_for_data(time_out = 1, polling_attempts = 5)
+	def with_wait_for_data(time_out = 1, polling_attempts = 10)
 		attempts = 0
 
 		until @client.has_data() do
@@ -29,7 +29,7 @@ class PioneerRubySdk
 				break
 			end
 
-			sleep(time_out)
+			sleep(time_out * rand(10))
 		end
 		return self
 	end
