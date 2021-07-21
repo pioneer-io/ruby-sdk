@@ -84,7 +84,7 @@ class Event_Source_Client
 		return analytics_collector
 	end
 
-	def log_method(event_object)
+	def log_event(event_object)
 		@analytics_collectors.each do |analytics_collector|
 			analytics_collector.log_event(event_object)
 		end

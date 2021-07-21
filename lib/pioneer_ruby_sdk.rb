@@ -19,7 +19,9 @@ class PioneerRubySdk
 		self
 	end
 
-	def with_wait_for_data(time_out = 1, polling_attempts = 10)
+	def with_wait_for_data()
+		time_out = 1
+		polling_attempts = 10
 		attempts = 0
 
 		until @client.has_data() do
@@ -29,6 +31,7 @@ class PioneerRubySdk
 				break
 			end
 
+			puts 'Attempting to connect to scout daemon...'
 			sleep(time_out * rand(10))
 		end
 		return self
@@ -81,11 +84,23 @@ end
 
 # pass in a string to identify an individual user e.g. cookie
 sdk_with_user = sdk_connection.with_context('90')
+config_object = {
+	tracking_id: 'UA-202935786-1',
+	client_id: 'unique id for test'
+}
+sdk_with_user.add_google_analytics_collector(config_object)
 
-if sdk_with_user.get_feature('test this flag', true)
-	puts 'Calling some microservice...'
-	# call to new microservice goes here
-else
-	puts 'Calling the monolith service...'
-	# monolith defined service call goes here
-end
+event_object = {
+	category: 'test',
+	action: 'some action',
+	label: 'new label',
+	value: 'some value'
+}
+sdk_with_user.log_event(event_object)
+# if sdk_with_user.get_feature('test this flag', true)
+# 	puts 'Calling some microservice...'
+# 	# call to new microservice goes here
+# else
+# 	puts 'Calling the monolith service...'
+# 	# monolith defined service call goes here
+# end
