@@ -16,7 +16,7 @@ class Event_Source_Client
     }
 
 	# this needs to make use of the constant based uri, not hardcoded
-	sse_client = SSE::Client.new("http://localhost:3030/features", headers: options[:headers])
+	sse_client = SSE::Client.new(@config[:server_address], headers: options[:headers])
 
 	@api_client = sse_client
 	end
