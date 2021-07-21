@@ -38,7 +38,6 @@ class PioneerRubySdk
 	end
 
 	def with_context(user_key)
-		user_key = user_key
 		context_obj = {
 			context: Context.new(user_key),
 			client: @client,
@@ -94,13 +93,13 @@ event_object = {
 	category: 'test',
 	action: 'some action',
 	label: 'new label',
-	value: 'some value'
+	value: '1234'
 }
 sdk_with_user.log_event(event_object)
-# if sdk_with_user.get_feature('test this flag', true)
-# 	puts 'Calling some microservice...'
-# 	# call to new microservice goes here
-# else
-# 	puts 'Calling the monolith service...'
-# 	# monolith defined service call goes here
-# end
+if sdk_with_user.get_feature('test this flag', true)
+	puts 'Calling some microservice...'
+	# call to new microservice goes here
+else
+	puts 'Calling the monolith service...'
+	# monolith defined service call goes here
+end

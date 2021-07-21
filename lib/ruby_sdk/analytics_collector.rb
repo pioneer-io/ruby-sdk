@@ -11,7 +11,7 @@ class AnalyticsCollector
 		client_id = event_object[:client_id]
 
 		Net::HTTP.post_form(
-			URI("http://www.google-analytics.com/collect"),
+			URI("https://www.google-analytics.com/collect"),
 			v:   "1",             # API Version
 			tid: @tracking_id,    # Tracking ID / Property ID
 			cid: @client_id,       # Client ID
