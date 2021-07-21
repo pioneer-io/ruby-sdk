@@ -1,6 +1,7 @@
 require_relative 'strategy'
 
 class FeatureState
+	attr_reader :value
 	def initialize(feature_state_object)
 		@title = feature_state_object[:title],
 		@value = feature_state_object[:value],

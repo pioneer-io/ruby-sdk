@@ -13,9 +13,9 @@ class Pioneer_Ruby_Sdk
 	end
 
 	def connect()
-	@client = Event_Source_Client.new(@configs)
-		@client.start()
-		return self
+		@client = Event_Source_Client.new(@configs)
+		@client.start
+		self
 	end
 
 	def with_wait_for_data(time_out = 1, polling_attempts = 5)
@@ -46,5 +46,9 @@ class Pioneer_Ruby_Sdk
 
 	def get_server_address()
 		return @server_address
+	end
+
+	def get_feature(key, default_value)
+		@client.get_feature(key, default_value)
 	end
 end

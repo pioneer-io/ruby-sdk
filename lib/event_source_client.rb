@@ -1,7 +1,7 @@
 require 'ld-eventsource'
 require 'json'
 require_relative 'feature_state'
-require_relative 'helper_methods/handle_undefined_feature'
+require_relative 'mod/handle_undefined_feature'
 
 # class for event source client instance
 class Event_Source_Client 
@@ -15,7 +15,8 @@ class Event_Source_Client
       headers: { Authorization: @config[:sdk_key]}
     }
 
-	sse_client = SSE::Client.new("localhost:3030/features", headers: options[:headers])
+	# this needs to make use of the constant based uri, not hardcoded
+	sse_client = SSE::Client.new(@config[:server_address], headers: options[:headers])
 
 	@api_client = sse_client
 	end
@@ -26,20 +27,13 @@ class Event_Source_Client
 	end
 
 	def handle_events
-		event_type = nil
-
 		@api_client.on_event do |event| 
 			data = JSON.parse(event[:data]) 
-			event_type = data[:type]
-			payload = data[:data]
-		end
-
-		puts event_type
-		case event_type
-		when "ALL_FEATURES" 
-			handle_all_features(payload)
-		when "CREATE_CONNECTION"
-			return
+			event_type = data['eventType']
+			if event_type == "ALL_FEATURES"
+				payload = data['payload']
+				handle_all_features(payload)
+			end
 		end
 	end
 
@@ -56,11 +50,11 @@ class Event_Source_Client
 
 		all_features.each do |feature|
 			modified_feature_state_params = {
-				title: feature[:title],
-				value: feature[:is_active],
-				strategy: {percentage: feature[:rollout]}
+				title: feature['title'],
+				value: feature['is_active'],
+				strategy: {percentage: feature['rollout']}
 			}
-			feature_states[feature[:title]] = FeatureState.new(modified_feature_state_params)
+			feature_states[feature['title']] = FeatureState.new(modified_feature_state_params)
 		end
 
 		@features = feature_states
@@ -69,17 +63,16 @@ class Event_Source_Client
 
 	def get_feature(key, default_value) 
 		feature_state = get_feature_state(key)
-		if !feature_state
-			handle_undefined_feature(key, default_value)
+		if feature_state.nil?
+			HandleUndefinedFeature.handle(key, default_value)
 			return
 		end
 
-		value = feature_state[:value]
-		return value
+		feature_state.value
 	end
 
 
 	def get_feature_state(key) 
-		return @features[:key]
+		return @features[key]
 	end
 end
