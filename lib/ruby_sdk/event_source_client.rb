@@ -63,7 +63,7 @@ class Event_Source_Client
 		@has_data = true
 	end
 
-	def get_feature(key, default_value) 
+	def get_feature(key, default_value = nil)
 		feature_state = get_feature_state(key)
 		if feature_state.nil?
 			HandleUndefinedFeature.handle(key, default_value)

@@ -7,13 +7,17 @@ class Client_With_Context
 		@config = context_obj[:config]
 	end
 
-	def get_feature(key, default_value)
+	def get_feature(key, default_value = nil)
 		feature_state = @client.get_feature_state(key)
-		if !feature_state
-			return HandleUndefinedFeature.handle(key, default_value)
-		end
+		puts 'feature state in get feature: ', feature_state
+		return HandleUndefinedFeature.handle(key, default_value) if !feature_state
 
-		return feature_state.strategy.calculate(@context)
+		# if value of flag is true, use rollout
+		if feature_state.value
+			return feature_state.strategy.calculate(@context)
+		else
+			return feature_state.value
+		end
 	end
 
 	def add_google_analytics_collector(config_object)
