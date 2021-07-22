@@ -14,7 +14,6 @@ class HandleUndefinedFeatureTest < Minitest::Test
 	def test_handle_undefined_feature_with_nil_default
 		key = 'sample key'
 		default_value = nil
-		expected_output = "Error: flag with title '#{key}' does not exist, cannot get get feature!\n"
 
 		assert_raises(StandardError) { HandleUndefinedFeature.handle(key, default_value) }
 	end

@@ -2,7 +2,7 @@
 
 # handles the calculation of rollout for a given context
 class Strategy
-  def initialize(percentage)
+	def initialize(percentage)
 		@percentage = percentage
 		@modulus = 100
 	end
