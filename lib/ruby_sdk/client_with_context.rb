@@ -1,6 +1,6 @@
 require_relative 'mod/handle_undefined_feature.rb'
 
-class Client_With_Context
+class ClientWithContext
 	def initialize(context_obj)
 		@context = context_obj[:context]
 		@client = context_obj[:client]
@@ -9,7 +9,6 @@ class Client_With_Context
 
 	def get_feature(key, default_value = nil)
 		feature_state = @client.get_feature_state(key)
-		puts 'feature state in get feature: ', feature_state
 		return HandleUndefinedFeature.handle(key, default_value) if !feature_state
 
 		# if value of flag is true, use rollout

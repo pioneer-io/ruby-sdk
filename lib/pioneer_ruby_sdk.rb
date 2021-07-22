@@ -14,7 +14,7 @@ class PioneerRubySdk
 	end
 
 	def connect()
-		@client = Event_Source_Client.new(@configs)
+		@client = EventSourceClient.new(@configs)
 		@client.start
 		self
 	end
@@ -44,7 +44,7 @@ class PioneerRubySdk
 			config: @configs
 		}
 
-		return Client_With_Context.new(context_obj)
+		return ClientWithContext.new(context_obj)
 	end
 
 	def get_server_address()

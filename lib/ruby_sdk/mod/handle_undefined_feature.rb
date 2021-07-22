@@ -4,6 +4,6 @@ module HandleUndefinedFeature
 			puts("Warning: Could not get '#{key}' from features, using provided default value!")
 			return default_value
 		end
-		raise("Error: flag with title '#{key}' does not exist, cannot get get feature!");
+		raise StandardError.new("Error: flag with title '#{key}' does not exist, cannot get get feature!");
 	end
 end

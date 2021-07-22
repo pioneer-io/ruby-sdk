@@ -108,3 +108,6 @@ event_object = {
 }
 sdk_with_user.log_event(event_object)
 ```
+
+## Testing 
+To run a basic suite of unit tests, just `rake` from the main directory.
