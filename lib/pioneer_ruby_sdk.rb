@@ -44,7 +44,7 @@ class PioneerRubySdk
 			config: @configs
 		}
 
-		return Client_With_Context.new(context_obj)
+		return ClientWithContext.new(context_obj)
 	end
 
 	def get_server_address()

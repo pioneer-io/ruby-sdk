@@ -1,6 +1,6 @@
 require_relative 'mod/handle_undefined_feature.rb'
 
-class Client_With_Context
+class ClientWithContext
 	def initialize(context_obj)
 		@context = context_obj[:context]
 		@client = context_obj[:client]

@@ -8,7 +8,7 @@ class Strategy
 	end
 
 	def calculate(context)
-		key = context.get_key()
+		key = context.get_key
 		hashed_percentage = get_hash_based_percentage(key)
 		return hashed_percentage <= @percentage
 	end
