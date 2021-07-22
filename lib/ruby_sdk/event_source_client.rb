@@ -1,6 +1,7 @@
 require 'ld-eventsource'
 require 'json'
 require_relative 'feature_state'
+require_relative 'analytics_collector'
 require_relative 'mod/handle_undefined_feature'
 
 # class for event source client instance
@@ -10,6 +11,7 @@ class Event_Source_Client
 	def initialize(config)
 		@config = config
 		@features = {}
+		@analytics_collectors = []
 		@has_data = false
 		options = {
       headers: { Authorization: @config[:sdk_key]}
@@ -74,5 +76,17 @@ class Event_Source_Client
 
 	def get_feature_state(key) 
 		return @features[key]
+	end
+
+	def add_google_analytics_collector(config_object)
+		analytics_collector = AnalyticsCollector.new(config_object)
+		@analytics_collectors.push(analytics_collector)
+		return analytics_collector
+	end
+
+	def log_event(event_object)
+		@analytics_collectors.each do |analytics_collector|
+			analytics_collector.log_event(event_object)
+		end
 	end
 end

@@ -15,4 +15,12 @@ class Client_With_Context
 
 		return feature_state.strategy.calculate(@context)
 	end
+
+	def add_google_analytics_collector(config_object)
+		@client.add_google_analytics_collector(config_object)	
+	end
+
+	def log_event(event_object)
+		@client.log_event(event_object)
+	end
 end

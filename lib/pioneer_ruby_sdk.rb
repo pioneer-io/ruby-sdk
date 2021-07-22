@@ -83,7 +83,6 @@ end
 
 # pass in a string to identify an individual user e.g. cookie
 sdk_with_user = sdk_connection.with_context('90')
-
 if sdk_with_user.get_feature('test this flag', true)
 	puts 'Calling some microservice...'
 	# call to new microservice goes here
