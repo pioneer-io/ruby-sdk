@@ -2,7 +2,7 @@
 
 This module is a server-side SDK for applications written in Ruby, who are using Pioneer's feature management service.
 
-Visit the Pioneer-io/Pioneer repo for more.
+Visit the [Pioneer-io/Compass](https://github.com/pioneer-io/compass) repo for more.
 
 ## Getting Started
 The Pioneer Ruby SDK is available as a Ruby Gem: https://rubygems.org/gems/pioneer_ruby_sdk
@@ -14,9 +14,9 @@ gem install pioneer_ruby_sdk
 
 ## Utilising the SDK in application code
 Now, you will need to require the `pioneer_ruby_sdk` gem in your application.
-To create a new SDK client, the URI of the `scout` daemon is required in addition to an SDK key, obtained from the `Account` tab of the `pioneer` webpage. The default port for `scout` is `:3030` and the `/features` endpoint is the proper endpoint to receive flag updates.
+To create a new SDK client, the URI of the `scout` daemon is required in addition to an SDK key, obtained from the `Account` tab of the Compass application's user interface. The default port for `scout` is `:3030` and the `/features` endpoint is the proper endpoint to receive flag updates.
 
-The SDK client will receive ruleset updates in real-time via SSE any time a feature flag is created/updated/deleted via the Pioneer dashboard.
+The SDK client will receive ruleset updates in real-time via SSE any time a feature flag is created/updated/deleted via the Compass dashboard.
 ```Ruby
 require 'pioneer_ruby_sdk'
 
