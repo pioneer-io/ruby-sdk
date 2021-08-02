@@ -1,0 +1,22 @@
+name: pioneer-ruby-sdk
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-16.04
+
+    strategy:
+      matrix:
+        ruby: ["2.5", "2.6"]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      - run: rake
