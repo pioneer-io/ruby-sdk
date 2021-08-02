@@ -7,17 +7,31 @@ on:
     branches: [main]
 
 jobs:
-  build:
-    runs-on: ubuntu-16.04
-
-    strategy:
-      matrix:
-        ruby: ["2.5", "2.6"]
+  test:
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-ruby@v1
+      - name: checkout code
+        uses: actions/checkout@v2
+
+      - name: setup ruby
+        uses: actions/setup-ruby@v1
+
+      - name: Install dependencies
+        run: sudo apt-get install libpq-dev
+
+      - name: Ruby gem cache
+        uses: actions/cache@v1
         with:
-          ruby-version: ${{ matrix.ruby }}
-      - run: bundle install
-      - run: rake
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: install gems
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - name: run tests
+        run: bundle exec rake
