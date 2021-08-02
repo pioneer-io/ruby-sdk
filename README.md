@@ -6,6 +6,7 @@
 [![ruby-javascript-sdk](https://github.com/pioneer-io/ruby-sdk/actions/workflows/verify.yml/badge.svg)](https://github.com/pioneer-io/ruby-sdk/actions/workflows/verify.yml)
 ![](https://ruby-gem-downloads-badge.herokuapp.com/pioneer_ruby_sdk?color=blue)
 [![Gem Version](https://badge.fury.io/rb/pioneer_ruby_sdk.svg)](https://badge.fury.io/rb/pioneer_ruby_sdk)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4a3cf78223e407ff59bb/maintainability)](https://codeclimate.com/github/pioneer-io/ruby-sdk/maintainability)
 
 This module is a server-side SDK for applications written in Ruby using Pioneer's feature management service.
 
