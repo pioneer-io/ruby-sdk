@@ -3,6 +3,7 @@
 </p>
 
 # Ruby SDK for Pioneer
+[![ruby-javascript-sdk](https://github.com/pioneer-io/ruby-sdk/actions/workflows/verify.yml/badge.svg)](https://github.com/pioneer-io/ruby-sdk/actions/workflows/verify.yml)
 
 This module is a server-side SDK for applications written in Ruby using Pioneer's feature management service.
 
