@@ -4,9 +4,7 @@
 
 # Ruby SDK for Pioneer
 [![ruby-javascript-sdk](https://github.com/pioneer-io/ruby-sdk/actions/workflows/verify.yml/badge.svg)](https://github.com/pioneer-io/ruby-sdk/actions/workflows/verify.yml)
-
 ![](https://ruby-gem-downloads-badge.herokuapp.com/pioneer_ruby_sdk?color=blue)
-
 [![Gem Version](https://badge.fury.io/rb/pioneer_ruby_sdk.svg)](https://badge.fury.io/rb/pioneer_ruby_sdk)
 
 This module is a server-side SDK for applications written in Ruby using Pioneer's feature management service.
