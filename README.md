@@ -6,7 +6,7 @@
 
 This module is a server-side SDK for applications written in Ruby using Pioneer's feature management service.
 
-Visit the [Pioneer-io/Compass](https://github.com/pioneer-io/compass) repo for more or check our Pioneer's [case study page](https://pioneer-io.github.io/).
+Visit the [Pioneer-io/pioneer](https://github.com/pioneer-io/pioneer) repo for more or check our Pioneer's [case study page](https://pioneer-io.github.io/).
 
 ## Getting Started
 The Pioneer Ruby SDK is available as a Ruby Gem: https://rubygems.org/gems/pioneer_ruby_sdk
