@@ -28,11 +28,11 @@ class PioneerRubySdk
 			attempts += 1
 			if attempts > polling_attempts
 				puts "Cannot connect to Scout, connection timed out"
+				@client.close()
 				break
 			end
 
 			puts 'Attempting to connect to scout daemon...'
-			sleep(time_out * rand(10))
 		end
 		return self
 	end
